@@ -89,9 +89,9 @@ block content
       div.col-xs-2.stat-holder.xpull-right
         div.big-info.chart.xdouble-chart.text-danger
           //- i.icon-hashrate
-          span.small-title last blocks miners
-          div.blocks-holder(ng-repeat='miner in miners track by miner.miner', data-toggle="tooltip", data-placement="right", data-original-title="{{miner.blocks}}")
-            div.block-count(class="{{miner.blocks | minerBlocksClass : 'text-'}}") {{miner.blocks}}
+          span.small-title last blocks validators
+          div.blocks-holder(ng-repeat='miner in miners track by miner.miner', data-placement="right", data-original-title="{{miner.blocks}}")
+            // div.block-count(class="{{miner.blocks | minerBlocksClass : 'text-'}}") {{miner.blocks}}
             div.small-title-miner {{miner.miner | minerNameFilter : miner.name}}
             minerblock(blocks="{{miner.blocks}}")
             div.clearfix
@@ -110,7 +110,7 @@ block content
             th.th-latency
               i.icon-clock(data-toggle="tooltip", data-placement="top", title="Node latency", ng-click="orderTable(['stats.latency'], false)")
             th
-              i.icon-mining(data-toggle="tooltip", data-placement="top", title="Is mining", ng-click="orderTable(['-stats.hashrate'], false)")
+              i.icon-mining(data-toggle="tooltip", data-placement="top", title="Is validating", ng-click="orderTable(['-stats.hashrate'], false)")
             th
               i.icon-group(data-toggle="tooltip", data-placement="top", title="Peers", ng-click="orderTable(['-stats.peers'], false)")
             th
@@ -118,12 +118,8 @@ block content
             th
               i.icon-block(data-toggle="tooltip", data-placement="top", title="Last block", ng-click="orderTable(['-stats.block.number', 'stats.block.propagation'], false)")
             th.th-blockhash &nbsp;
-            th.th-blockhash
-              i.icon-difficulty(data-toggle="tooltip", data-placement="top", title="Total difficulty", ng-click="orderTable(['-stats.block.totalDifficulty'], false)")
             th
               i.icon-check-o(data-toggle="tooltip", data-placement="top", title="Block transactions", ng-click="orderTable(['-stats.block.transactions.length'], false)")
-            th
-              i.icon-uncle(data-toggle="tooltip", data-placement="top", title="Uncles", ng-click="orderTable(['-stats.block.uncles.length'], false)")
             th.th-blocktime
               i.icon-time(data-toggle="tooltip", data-placement="top", title="Last block time", ng-click="orderTable(['-stats.block.received'], false)")
             th.th-peerPropagationTime
@@ -146,7 +142,7 @@ block content
               div.small(ng-bind-html="node.info.node | nodeVersion")
             td(class="{{ node.readable.latencyClass }}")
               span.small {{ node.readable.latency }}
-            td(class="{{ node.stats.mining | hashrateClass : node.stats.active }}", ng-bind-html="node.stats.hashrate | hashrateFilter : node.stats.mining")
+            td(class="{{ node.stats.mining | hashrateClass : node.stats.active }}", style="padding-left: 11px;") {{node.stats.mining}}
             td(class="{{ node.stats.peers | peerClass : node.stats.active }}", style="padding-left: 11px;") {{node.stats.peers}}
             td(style="padding-left: 15px;") {{node.stats.pending}}
             td(class="{{ node.stats | blockClass : bestBlock }}")
@@ -155,10 +151,7 @@ block content
                 i.icon-warning-o
             td(class="{{ node.stats | blockClass : bestBlock }}")
               span.small {{node.stats.block.hash | hashFilter}}
-            td(class="{{ node.stats | blockClass : bestBlock }}")
-              span.small {{node.stats.block.totalDifficulty | number}}
             td(style="padding-left: 14px;") {{node.stats.block.transactions.length || 0}}
-            td(style="padding-left: 14px;") {{node.stats.block.uncles.length || 0}}
             td(class="{{ node.stats.block.received | timeClass : node.stats.active }}") {{node.stats.block.received | blockTimeFilter }}
             td(class="{{ node.stats | propagationTimeClass : bestBlock }}")
               div.propagationBox
