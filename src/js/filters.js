@@ -139,18 +139,18 @@ angular.module('netStatsApp.filters', [])
 			return "0 TLC";
 
 		if(price.length < 4)
-			return numberFilter(price) + " TLC";
+			return numberFilter(price) + " aTLC";
 
 		if(price.length < 7)
-			return numberFilter(price/1000) + " kTLC";
+			return numberFilter(price/1000) + " fTLC";
 
 		if(price.length < 10)
-			return numberFilter(price/1000000) + " MTLC";
+			return numberFilter(price/1000000) + " pTLC";
 
 		if(price.length < 13)
-			return numberFilter(price/1000000000) + " GTLC";
+			return numberFilter(price/1000000000) + " nTLC";
 
-		return numberFilter(price/1000000000000) + " TTLC";
+		return numberFilter(price/1000000000000) + " µTLC";
 	}
 }])
 .filter('gasFilter', function() {
