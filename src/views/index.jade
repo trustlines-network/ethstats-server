@@ -160,3 +160,6 @@ block content
               nodepropagchart(data="{{node.history.join(',')}}")
             td(class="{{ node.stats | propagationNodeAvgTimeClass : bestBlock }}") {{ node.stats | blockPropagationAvgFilter : bestBlock }}
             td(class="{{ node.stats.uptime | upTimeClass : node.stats.active }}") {{ node.stats.uptime | upTimeFilter }}
+  footer.footer
+    div.text-center.small
+      a(href="https://trustlines.foundation/legal-imprint-privacy-policy.html") Legal Imprint &amp; Privacy Policy
