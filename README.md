@@ -41,6 +41,8 @@ WS_SECRET="asdf" npm start
 ```
 Find the interface at http://localhost:3000
 
+By default the IP Address of the client nodes is hidden from the frontend. If you want to transmit this information (although it is never used in the frontend), you can add the environment variable ```HIDE_IP=false```
+
 ## Proof-of-Work (Legacy)
 
 ![Screenshot](src/images/screenshot-pow.png "Screenshot POW")

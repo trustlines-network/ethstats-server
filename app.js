@@ -117,7 +117,9 @@ api.on('connection', function (spark)
 
 		if( !_.isUndefined(data.id) && !_.isUndefined(data.info) )
 		{
-			data.ip = spark.address.ip;
+			if (process.env.HIDE_IP && process.env.HIDE_IP === 'false') {
+				data.ip = spark.address.ip;
+			}
 			data.spark = spark.id;
 			data.latency = spark.latency || 0;
 
