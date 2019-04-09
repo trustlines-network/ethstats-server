@@ -456,7 +456,7 @@ angular.module('netStatsApp.filters', [])
 			tooltip.push(string);
 		}
 
-		if(node.geo !== null)
+		if(node.geo && typeof node.geo === 'object' && Object.keys(node.geo).length)
 		{
 			string = "Location: <b>";
 
