@@ -493,8 +493,8 @@ netStatsApp.controller('StatsCtrl', function($scope, $filter, $localStorage, soc
 		$scope.map = _.map($scope.nodes, function (node) {
 			var fill = $filter('bubbleClass')(node.stats, $scope.bestBlock);
 
-			if(node.geo != null)
-				return {
+                        if(node.geo && typeof node.geo === 'object' && Object.keys(node.geo).ll)
+                                return {
 					radius: 3,
 					latitude: node.geo.ll[0],
 					longitude: node.geo.ll[1],
